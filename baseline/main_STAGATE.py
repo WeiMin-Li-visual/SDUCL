@@ -28,9 +28,7 @@ os.environ['R_USER'] = '/usr/local/miniconda3/envs/STAGATE/lib/python3.8/site-pa
 # dataset = ["151507", "151508", "151509", "151510", "151669", "151670", "151671", "151672", "151673", "151674", "151675",
 #           "151676"]
 # knn = [7, 7, 7, 7, 5, 5, 5, 5, 7, 7, 7, 7]
-dataset = ["151509"]
-knn = [7]
-# ARIlist = []
+
 df = pd.DataFrame(columns=['Sample', 'ARI', 'NMI', 'Purity', 'Homogeneity', 'Completeness', 'V_Measure', 'methods'])
 for section_id, k in zip(dataset, knn):
     print(section_id, k)
