@@ -9,7 +9,6 @@ import warnings
 import matplotlib.pyplot as plt
 from utils import clustering, calculate_clustering_matrix
 
-# 设置R语言路径&CUDA
 warnings.filterwarnings("ignore")
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 os.environ['R_HOME'] = '/root/miniconda3/envs/py310cu118_CN/lib/R'
@@ -22,7 +21,7 @@ os.environ['R_USER'] = '/root/miniconda3/envs/py310cu118_CN/lib/python3.10/site-
 
 df = pd.DataFrame(columns=['Sample', 'ARI', 'NMI', 'Purity', 'Homogeneity', 'Completeness', 'V_Measure', 'methods'])
 ARIs = []
-# 遍历每一个section
+
 for section_id, k in zip(dataset, n_clusters):
     print(section_id, k)
     # read data
@@ -56,7 +55,7 @@ for section_id, k in zip(dataset, n_clusters):
     # # filter out NA nodes
     adata = adata[~pd.isnull(adata.obs['ground_truth'])]
     
-    # ARI判断聚类结果
+    # ARI
     ARI = metrics.adjusted_rand_score(adata.obs['domain'], adata.obs['ground_truth'])
     ARI = round(ARI, 3)
     print(ARI)
